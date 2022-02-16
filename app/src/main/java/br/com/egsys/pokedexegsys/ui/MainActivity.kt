@@ -1,7 +1,8 @@
-package br.com.egsys.pokedexegsys
+package br.com.egsys.pokedexegsys.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.egsys.pokedexegsys.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

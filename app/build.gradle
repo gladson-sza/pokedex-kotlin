@@ -58,20 +58,19 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 
     // Koin
-    implementation 'org.koin:koin-android:2.1.5'
-    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
-    implementation 'org.koin:koin-androidx-scope:2.1.5'
+    implementation 'io.insert-koin:koin-android:3.1.5'
+    implementation 'io.insert-koin:koin-androidx-workmanager:3.1.5'
+    implementation 'io.insert-koin:koin-androidx-navigation:3.1.5'
 
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
-    // Glide
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
-
     // Room
     implementation "androidx.room:room-runtime:2.4.1"
-    kapt  'androidx.room:room-compiler:2.4.1'
+    kapt 'androidx.room:room-compiler:2.4.1'
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    kapt 'com.github.bumptech.glide:compiler:4.13.0'
 }
