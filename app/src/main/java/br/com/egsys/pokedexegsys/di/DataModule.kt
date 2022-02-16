@@ -1,6 +1,7 @@
 package br.com.egsys.pokedexegsys.di
 
 import android.util.Log
+import br.com.egsys.pokedexegsys.data.datasource.service.PokedexService
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -44,6 +45,7 @@ object DataModule {
         }
 
         single { MoshiConverterFactory.create(Moshi.Builder().build()) }
+        single { createService<PokedexService>(get(), get()) }
     }
 
     private fun databaseModule() = module {
