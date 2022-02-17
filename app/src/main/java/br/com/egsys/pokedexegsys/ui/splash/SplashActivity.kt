@@ -2,38 +2,61 @@ package br.com.egsys.pokedexegsys.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowManager
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import br.com.egsys.pokedexegsys.databinding.ActivitySplashBinding
 import br.com.egsys.pokedexegsys.ui.MainActivity
-
+import br.com.egsys.pokedexegsys.util.setFullScreen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
+    private val viewModel by viewModel<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setFullScreen(binding.root)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowInsetsControllerCompat(window, binding.root).let { controller ->
-            controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        binding.tvTouch.setOnClickListener { viewModel.verifyIfHasOfflineEntries() }
+
+        viewModel.hasOfflinePokedex.observe(this) { hasOfflineEntries ->
+            if (hasOfflineEntries) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                viewModel.fetchPokedexEntries()
+            }
         }
 
-        binding.tvTouch.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        viewModel.pokedexEntries.observe(this) { state ->
+            when (state) {
+                is SplashViewModel.PokedexEntriesState.Error -> {
+                    Log.e("pokedexEntries", state.error.message.toString())
+                }
+                is SplashViewModel.PokedexEntriesState.Loading -> {}
+                is SplashViewModel.PokedexEntriesState.Success -> {
+                    Toast.makeText(applicationContext, "Sucesso Entries", Toast.LENGTH_SHORT).show()
+                    viewModel.insertOnDatabase(state.pokedexEntries.pokemon_entries)
+                }
+            }
+        }
+
+        viewModel.databaseInsertion.observe(this) { state ->
+            when(state) {
+                is SplashViewModel.DatabaseInsertionState.Error -> {
+                    Log.e("databaseInsertion", state.error.message.toString())
+                }
+                is SplashViewModel.DatabaseInsertionState.Loading -> {}
+                is SplashViewModel.DatabaseInsertionState.Success -> {
+                    Toast.makeText(applicationContext, "Sucesso Database", Toast.LENGTH_SHORT).show()
+                    viewModel.verifyIfHasOfflineEntries()
+                }
+            }
         }
     }
 }

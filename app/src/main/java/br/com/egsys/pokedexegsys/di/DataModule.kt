@@ -1,10 +1,15 @@
 package br.com.egsys.pokedexegsys.di
 
 import android.util.Log
+import br.com.egsys.pokedexegsys.data.datasource.AppDatabase
+import br.com.egsys.pokedexegsys.data.datasource.AppPreference
 import br.com.egsys.pokedexegsys.data.datasource.service.PokedexService
+import br.com.egsys.pokedexegsys.data.repositories.PokedexRepository
+import br.com.egsys.pokedexegsys.data.repositories.PokedexRepositoryImpl
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -49,10 +54,12 @@ object DataModule {
     }
 
     private fun databaseModule() = module {
-
+        single { AppDatabase.getInstance(androidContext()).pokemonDao() }
+        single { AppDatabase.getInstance(androidContext()).abilityDao() }
+        single { AppPreference(get()) }
     }
 
     private fun repositoryModule() = module {
-
+        single<PokedexRepository> { PokedexRepositoryImpl(get(), get(), get()) }
     }
 }
