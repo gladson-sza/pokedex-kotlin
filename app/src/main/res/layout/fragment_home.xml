@@ -51,6 +51,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPokemonCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"

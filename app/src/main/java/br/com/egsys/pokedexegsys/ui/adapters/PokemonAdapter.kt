@@ -43,6 +43,9 @@ class PokemonAdapter(
                 .load(Util.getPokemonImageUrl(item.id))
                 .into(binding.ivPokemon)
 
+            binding.tvPokemonName.text = item.name.replaceFirstChar { it.uppercase() }
+            binding.tvDexNumber.text = "#${item.id.toString().padStart(3, '0')}"
+
             binding.card.setBackgroundTintColor(TypeColor.valueOf(item.type1.uppercase()).color)
             binding.card.setOnClickListener { onCardClickListener.invoke(item) }
         }
