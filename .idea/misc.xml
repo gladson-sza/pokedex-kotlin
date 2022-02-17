@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable-v24/bg_sv.xml" value="0.287" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3325" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/bg_sv.xml" value="0.3325" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/bg_type.xml" value="0.3325" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3325" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_pokeball.xml" value="0.3325" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_pokedex_top.xml" value="0.239" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_search.xml" value="0.287" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_sort.xml" value="0.3325" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/activity_fullscreen.xml" value="0.1" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/activity_main.xml" value="0.16" />
-        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/item_pokemon_card.xml" value="0.22" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/pokemon_card_item.xml" value="0.3625" />
       </map>
     </option>
   </component>
