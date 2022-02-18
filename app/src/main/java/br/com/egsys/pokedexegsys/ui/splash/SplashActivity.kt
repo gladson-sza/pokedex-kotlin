@@ -40,7 +40,6 @@ class SplashActivity : AppCompatActivity() {
                 }
                 is SplashViewModel.PokedexEntriesState.Loading -> {}
                 is SplashViewModel.PokedexEntriesState.Success -> {
-                    Toast.makeText(applicationContext, "Sucesso Entries", Toast.LENGTH_SHORT).show()
                     viewModel.insertOnDatabase(state.pokedexEntries.pokemon_entries)
                 }
             }
@@ -53,7 +52,6 @@ class SplashActivity : AppCompatActivity() {
                 }
                 is SplashViewModel.DatabaseInsertionState.Loading -> {}
                 is SplashViewModel.DatabaseInsertionState.Success -> {
-                    Toast.makeText(applicationContext, "Sucesso Database", Toast.LENGTH_SHORT).show()
                     viewModel.verifyIfHasOfflineEntries()
                 }
             }

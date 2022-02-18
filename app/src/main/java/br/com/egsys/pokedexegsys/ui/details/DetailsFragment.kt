@@ -2,6 +2,7 @@ package br.com.egsys.pokedexegsys.ui.details
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -17,6 +18,7 @@ import br.com.egsys.pokedexegsys.databinding.FragmentDetailsBinding
 import br.com.egsys.pokedexegsys.ui.adapters.AbilityAdapter
 import br.com.egsys.pokedexegsys.util.Util
 import br.com.egsys.pokedexegsys.util.setBackgroundTintColor
+import br.com.egsys.pokedexegsys.util.setIsVisible
 import com.bumptech.glide.Glide
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,14 +38,16 @@ class DetailsFragment : Fragment() {
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        val pokemonId = args.pokemonId
-        viewModel.loadPokemonData(pokemonId)
+        viewModel.loadPokemonData(args.pokemonId)
 
         viewModel.pokemonData.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is DetailsViewModel.PokemonDataState.Error -> {}
                 is DetailsViewModel.PokemonDataState.Loading -> {}
                 is DetailsViewModel.PokemonDataState.Success -> {
+                    binding.btnBack.setIsVisible(viewModel.currentPokemonId == viewModel.minPokemonId)
+                    binding.btnForward.setIsVisible(viewModel.currentPokemonId == viewModel.maxPokemonId)
+
                     loadPokemonDetails(
                         state.pokemonData.first,
                         state.pokemonData.second
@@ -57,13 +61,10 @@ class DetailsFragment : Fragment() {
         binding.btnBackToHome.setOnClickListener { findNavController().popBackStack() }
 
         binding.btnBack.setOnClickListener {
-            val hyperspaceJump: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left)
-            binding.root.startAnimation(hyperspaceJump)
-
+            viewModel.loadPreviousPokemon()
         }
         binding.btnForward.setOnClickListener {
-
+            viewModel.loadNextPokemon()
         }
 
         return binding.root

@@ -18,6 +18,14 @@ fun View.setBackgroundTintColor(hexColor: String) {
     this.background = drawable
 }
 
+fun View.setIsVisible(isVisible: Boolean) {
+    if (isVisible) {
+        this.visibility = View.GONE
+    } else {
+        this.visibility = View.VISIBLE
+    }
+}
+
 fun View.hideSoftKeyboard() {
     val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)

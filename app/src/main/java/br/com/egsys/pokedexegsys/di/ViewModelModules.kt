@@ -10,6 +10,6 @@ object ViewModelModules {
     fun getModules() = module {
         viewModel { SplashViewModel(get(), get()) }
         viewModel { HomeViewModel(get()) }
-        viewModel { DetailsViewModel(get()) }
+        viewModel { DetailsViewModel(get(), get()) }
     }
 }
