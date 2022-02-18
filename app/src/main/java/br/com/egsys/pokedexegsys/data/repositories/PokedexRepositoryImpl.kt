@@ -5,6 +5,7 @@ import android.util.Log
 import br.com.egsys.pokedexegsys.data.datasource.dao.AbilityDao
 import br.com.egsys.pokedexegsys.data.datasource.dao.PokemonDao
 import br.com.egsys.pokedexegsys.data.datasource.service.PokedexService
+import br.com.egsys.pokedexegsys.data.model.SortMode
 import br.com.egsys.pokedexegsys.data.model.StatName
 import br.com.egsys.pokedexegsys.data.model.network.*
 import br.com.egsys.pokedexegsys.data.model.storage.Ability
@@ -71,7 +72,6 @@ class PokedexRepositoryImpl(
                 Log.i("DexRepository", "Types: ${pkmDex.types}")
 
 
-
                 val type1: String = pkmDex.types.first().type.name
                 var type2: String? = null
 
@@ -95,7 +95,6 @@ class PokedexRepositoryImpl(
                 )
 
 
-
             }
 
             pokemonDao.insertAll(*pkmList.toTypedArray())
@@ -109,36 +108,23 @@ class PokedexRepositoryImpl(
         }
     }
 
-    override fun searchPokemon(query: String): Flow<List<Pokemon>> = flow {
+    override fun searchPokemon(query: String, sortMode: SortMode): Flow<List<Pokemon>> = flow {
         try {
-            val pokemon = pokemonDao.findByNameAndId(query)
+            val pokemon = pokemonDao.findByNameAndIdDexSort(query)
             emit(pokemon)
         } catch (ex: SQLiteException) {
             throw DatabaseException(ex.message ?: "Cannot insert on database")
         }
     }
 
-    override fun getAllByNationalDex(): Flow<List<Pokemon>> = flow {
+    override fun getAllPokemon(sortMode: SortMode): Flow<List<Pokemon>> = flow {
         try {
-            val pokemon = pokemonDao.findAllSortedByDexNational()
-            emit(pokemon)
-        } catch (ex: SQLiteException) {
-            throw DatabaseException(ex.message ?: "Cannot find on database")
-        }
-    }
+            val pokemon = when (sortMode) {
+                SortMode.DEX -> pokemonDao.findAllSortedByDexNational()
+                SortMode.ALPHABETIC -> pokemonDao.findAllSortedByName()
+                SortMode.TYPE -> pokemonDao.findAllSortedByType()
+            }
 
-    override fun getAllByName(): Flow<List<Pokemon>> = flow {
-        try {
-            val pokemon = pokemonDao.findAllSortedByName()
-            emit(pokemon)
-        } catch (ex: SQLiteException) {
-            throw DatabaseException(ex.message ?: "Cannot find on database")
-        }
-    }
-
-    override fun getAllByType(): Flow<List<Pokemon>> = flow {
-        try {
-            val pokemon = pokemonDao.findAllSortedByType()
             emit(pokemon)
         } catch (ex: SQLiteException) {
             throw DatabaseException(ex.message ?: "Cannot find on database")

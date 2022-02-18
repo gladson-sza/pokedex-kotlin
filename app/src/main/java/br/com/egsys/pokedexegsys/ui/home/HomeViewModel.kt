@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.egsys.pokedexegsys.data.model.SortMode
 import br.com.egsys.pokedexegsys.data.model.storage.Pokemon
 import br.com.egsys.pokedexegsys.data.repositories.PokedexRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,8 +21,10 @@ class HomeViewModel(
     private val _pokemonData = MutableLiveData<PokemonDataState>()
     val pokemonData: LiveData<PokemonDataState> = _pokemonData
 
+    private var _sortMode = SortMode.DEX
+
     fun loadPokemonData() = viewModelScope.launch(Dispatchers.IO) {
-        repository.getAllByNationalDex().onStart {
+        repository.getAllPokemon(_sortMode).onStart {
             _pokemonData.postValue(PokemonDataState.Loading)
         }.catch {
             _pokemonData.postValue(PokemonDataState.Error(it))
@@ -29,6 +32,11 @@ class HomeViewModel(
             _pokemonData.postValue(PokemonDataState.Success(it))
             return@first true
         }
+
+    }
+
+    fun setSortMode(sortType: SortMode) {
+        _sortMode = sortType
     }
 
     sealed class PokemonDataState {
@@ -36,5 +44,6 @@ class HomeViewModel(
         data class Success(val pokemonList: List<Pokemon>) : PokemonDataState()
         data class Error(val error: Throwable) : PokemonDataState()
     }
+
 
 }

@@ -4,12 +4,14 @@ import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.fragment.app.Fragment
 
 fun View.setBackgroundTintColor(hexColor: String) {
     var drawable: Drawable = this.background
@@ -24,6 +26,13 @@ fun View.setIsVisible(isVisible: Boolean) {
     } else {
         this.visibility = View.GONE
     }
+}
+
+fun Fragment.setStatusBarColor(color: Int) {
+    val window = this.activity?.window
+    window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window?.statusBarColor = color
 }
 
 fun View.hideSoftKeyboard() {

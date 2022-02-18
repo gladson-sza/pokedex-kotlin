@@ -14,8 +14,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="redDex">#C83737</color>
     <color name="darkRedDex">#942828</color>
-
     <color name="grey">#888888</color>
     <color name="searchGrey">#2A2A2A</color>
     <color name="semiBlack">#0B0B0B</color>
+
+
 </resources>
