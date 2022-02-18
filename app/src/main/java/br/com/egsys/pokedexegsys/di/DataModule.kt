@@ -56,7 +56,7 @@ object DataModule {
     private fun databaseModule() = module {
         single { AppDatabase.getInstance(androidContext()).pokemonDao() }
         single { AppDatabase.getInstance(androidContext()).abilityDao() }
-        single { AppPreference(get()) }
+        single { AppPreference(androidContext()) }
     }
 
     private fun repositoryModule() = module {

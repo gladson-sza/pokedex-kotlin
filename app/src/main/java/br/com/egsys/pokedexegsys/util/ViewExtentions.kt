@@ -20,9 +20,9 @@ fun View.setBackgroundTintColor(hexColor: String) {
 
 fun View.setIsVisible(isVisible: Boolean) {
     if (isVisible) {
-        this.visibility = View.GONE
-    } else {
         this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
     }
 }
 

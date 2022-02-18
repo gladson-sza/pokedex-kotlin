@@ -12,6 +12,7 @@ import br.com.egsys.pokedexegsys.data.repositories.PokedexRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
@@ -36,8 +37,9 @@ class DetailsViewModel(
             _pokemonData.postValue(PokemonDataState.Loading)
         }.catch {
             _pokemonData.postValue(PokemonDataState.Error(it))
-        }.collect {
+        }.first {
             _pokemonData.postValue(PokemonDataState.Success(it))
+            return@first true
         }
     }
 

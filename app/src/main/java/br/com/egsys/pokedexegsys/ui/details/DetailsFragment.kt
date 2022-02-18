@@ -45,8 +45,8 @@ class DetailsFragment : Fragment() {
                 is DetailsViewModel.PokemonDataState.Error -> {}
                 is DetailsViewModel.PokemonDataState.Loading -> {}
                 is DetailsViewModel.PokemonDataState.Success -> {
-                    binding.btnBack.setIsVisible(viewModel.currentPokemonId == viewModel.minPokemonId)
-                    binding.btnForward.setIsVisible(viewModel.currentPokemonId == viewModel.maxPokemonId)
+                    binding.btnBack.setIsVisible(viewModel.currentPokemonId > viewModel.minPokemonId)
+                    binding.btnForward.setIsVisible(viewModel.currentPokemonId < viewModel.maxPokemonId)
 
                     loadPokemonDetails(
                         state.pokemonData.first,
@@ -55,8 +55,6 @@ class DetailsFragment : Fragment() {
                 }
             }
         }
-
-
 
         binding.btnBackToHome.setOnClickListener { findNavController().popBackStack() }
 
@@ -88,10 +86,14 @@ class DetailsFragment : Fragment() {
         binding.tvType1.text = pokemon.type1.replaceFirstChar { it.uppercase() }
         binding.tvType1.setBackgroundTintColor(TypeColor.valueOf(pokemon.type1.uppercase()).color)
 
-        pokemon.type2?.let {
-            binding.tvType2.visibility = View.VISIBLE
-            binding.tvType2.text = it.replaceFirstChar { c -> c.uppercase() }
-            binding.tvType2.setBackgroundTintColor(TypeColor.valueOf(it.uppercase()).color)
+        if (pokemon.type2 != null) {
+            binding.tvType2.apply {
+                setIsVisible(true)
+                text = pokemon.type2!!.replaceFirstChar { it.uppercase() }
+                setBackgroundTintColor(TypeColor.valueOf(pokemon.type2!!.uppercase()).color)
+            }
+        } else {
+            binding.tvType2.setIsVisible(false)
         }
 
 
