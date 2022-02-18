@@ -3,7 +3,6 @@ package br.com.egsys.pokedexegsys.data.model.storage
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.egsys.pokedexegsys.data.model.network.PokemonAbility
 
 @Entity
 data class Pokemon(

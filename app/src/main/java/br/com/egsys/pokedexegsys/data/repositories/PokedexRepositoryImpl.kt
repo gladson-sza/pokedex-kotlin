@@ -145,5 +145,15 @@ class PokedexRepositoryImpl(
         }
     }
 
+    override fun getPokemonData(id: Int): Flow<Pair<Pokemon, List<Ability>>> = flow {
+        try {
+            val pokemon = pokemonDao.findById(id)
+            val abilities = abilityDao.findByPokemon(id)
+            emit(Pair(pokemon, abilities))
+        } catch (ex: SQLiteException) {
+            throw DatabaseException(ex.message ?: "Cannot find on database")
+        }
+    }
+
 
 }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface PokemonDao {
 
     @Query("SELECT * FROM Pokemon WHERE id = :id")
-    fun findById(id: Int): List<Pokemon>
+    fun findById(id: Int): Pokemon
 
     @Query("SELECT * FROM Pokemon WHERE name LIKE :pkmName")
     fun findByName(pkmName: String): List<Pokemon>

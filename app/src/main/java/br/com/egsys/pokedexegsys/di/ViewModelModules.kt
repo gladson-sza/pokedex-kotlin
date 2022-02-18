@@ -1,5 +1,6 @@
 package br.com.egsys.pokedexegsys.di
 
+import br.com.egsys.pokedexegsys.ui.details.DetailsViewModel
 import br.com.egsys.pokedexegsys.ui.home.HomeViewModel
 import br.com.egsys.pokedexegsys.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -9,5 +10,6 @@ object ViewModelModules {
     fun getModules() = module {
         viewModel { SplashViewModel(get(), get()) }
         viewModel { HomeViewModel(get()) }
+        viewModel { DetailsViewModel(get()) }
     }
 }

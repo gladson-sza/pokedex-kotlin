@@ -1,13 +1,463 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.details.DetailsFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <View
+            android:id="@+id/view_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_custom_card"
+            android:elevation="0dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pokeball" />
+
+        <ImageView
+            android:id="@+id/iv_pokeball"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_pokeball"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#14000000" />
+
+        <ImageView
+            android:id="@+id/iv_pokemon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="80dp"
+            android:elevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pokemon">
+
+            <TextView
+                android:id="@+id/tv_type1"
+                style="@style/TextType"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_type_solid"
+                android:text="Type1" />
+
+            <TextView
+                android:id="@+id/tv_type2"
+                style="@style/TextType"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_type_solid"
+                android:text="Type2"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_about_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="About"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:id="@+id/tv_label_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            app:layout_constraintBottom_toBottomOf="@+id/divider_left"
+            app:layout_constraintEnd_toEndOf="@+id/tv_weight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_weight" />
+
+        <TextView
+            android:id="@+id/tv_label_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            app:layout_constraintBottom_toBottomOf="@+id/divider_left"
+            app:layout_constraintEnd_toEndOf="@+id/tv_height"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_height" />
+
+        <TextView
+            android:id="@+id/tv_label_abilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abilities"
+            app:layout_constraintBottom_toBottomOf="@+id/divider_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divider_right" />
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/ic_balance"
+            app:layout_constraintBottom_toTopOf="@+id/tv_label_weight"
+            app:layout_constraintEnd_toStartOf="@+id/divider_left"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="0.0 Kg" />
+
+        <TextView
+            android:id="@+id/tv_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/ic_metric"
+            app:layout_constraintBottom_toTopOf="@+id/tv_label_height"
+            app:layout_constraintEnd_toStartOf="@+id/divider_right"
+            app:layout_constraintStart_toEndOf="@+id/divider_left"
+            tools:text="0.0 m" />
+
+        <View
+            android:id="@+id/divider_left"
+            android:layout_width="1dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/divider_right"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_about_label" />
+
+        <View
+            android:id="@+id/divider_right"
+            android:layout_width="1dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divider_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_about_label" />
+
+        <ListView
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/lv_abilities"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
+            android:transcriptMode="disabled"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            tools:listitem="@layout/item_ability"
+            android:stackFromBottom="true"
+            android:listSelector="#00000000"
+            app:layout_constraintBottom_toTopOf="@+id/tv_label_abilities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider_right" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis eros vitae tellus condimentum maximus sit amet in eros."
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_height" />
+
+        <TextView
+            android:id="@+id/tv_stats_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Base Stats"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <LinearLayout
+            android:id="@+id/ll_base_stats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/view_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stats_label">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_hp_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="HP"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/tv_atk_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="ATK"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/tv_def_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="DEF"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/tv_satk_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="SATK"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/tv_sdef_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="SDEF"
+                    android:textAlignment="viewEnd" />
+
+                <TextView
+                    android:id="@+id/tv_spd_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="SPD"
+                    android:textAlignment="viewEnd" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_hp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+
+                <TextView
+                    android:id="@+id/tv_atk"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+
+                <TextView
+                    android:id="@+id/tv_def"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+
+                <TextView
+                    android:id="@+id/tv_satk"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+
+                <TextView
+                    android:id="@+id/tv_sdef"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+
+                <TextView
+                    android:id="@+id/tv_spd"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="#212121"
+                    tools:text="000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pb_hp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+
+                <ProgressBar
+                    android:id="@+id/pb_atk"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+
+                <ProgressBar
+                    android:id="@+id/pb_def"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+
+                <ProgressBar
+                    android:id="@+id/pb_satk"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+
+                <ProgressBar
+                    android:id="@+id/pb_sdef"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+
+                <ProgressBar
+                    android:id="@+id/pb_spd"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:max="255" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toTopOf="@+id/view_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btn_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_forward"
+            app:layout_constraintBottom_toTopOf="@+id/view_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btn_back_to_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back_to_home"
+            app:layout_constraintEnd_toStartOf="@+id/tvDexNumber"
+            app:layout_constraintStart_toEndOf="@+id/btn_back_to_home"
+            app:layout_constraintTop_toTopOf="@+id/btn_back_to_home"
+            tools:text="MissingNo" />
+
+        <TextView
+            android:id="@+id/tvDexNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title"
+            tools:text="#000" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -21,10 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="#001" />
+            android:textColor="@color/black_overlay"
+            tools:text="#000" />
 
         <TextView
             android:id="@+id/tv_pokemon_name"
@@ -33,26 +34,26 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_dex_number"
-            tools:text="Bulbasaur" />
+            tools:text="MissingNo" />
 
         <TextView
-            android:minWidth="70dp"
+            android:width="70dp"
             android:id="@+id/tv_type1"
             style="@style/TextType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pokemon_name"
             tools:text="Type 1" />
 
         <TextView
-            android:minWidth="70dp"
+            android:width="70dp"
             android:id="@+id/tv_type2"
             style="@style/TextType"
             android:visibility="invisible"

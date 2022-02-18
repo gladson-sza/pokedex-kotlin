@@ -9,7 +9,7 @@
     </style>
 
     <style name="TextType">
-        <item name="android:background">@drawable/bg_type</item>
+        <item name="android:background">@drawable/bg_type_overlay</item>
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingEnd">8dp</item>
