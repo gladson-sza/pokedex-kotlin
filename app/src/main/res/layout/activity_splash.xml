@@ -7,55 +7,82 @@
     android:background="@color/white"
     tools:context=".ui.splash.SplashActivity">
 
-
     <ImageView
         android:id="@+id/iv_pokedex_top"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="#c83737"
-        app:layout_constraintBottom_toTopOf="@+id/iv_pokedex_botton"
+        android:layout_height="0dp"
+        android:background="#C83737"
+        app:layout_constraintBottom_toTopOf="@+id/iv_pokedex_bottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pokedex_top" />
+        app:srcCompat="@drawable/pokedex_top"
+        android:contentDescription="@string/top_of_pokedex" />
 
     <ImageView
-        android:id="@+id/iv_pokedex_botton"
+        android:id="@+id/iv_pokedex_bottom"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="0dp"
         android:background="#c83737"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_pokedex_top"
-        app:srcCompat="@drawable/pokedex_botton" />
+        app:srcCompat="@drawable/pokedex_botton"
+        android:contentDescription="@string/bottom_of_pokedex" />
 
     <TextView
         android:id="@+id/tv_touch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TOUCH"
-        android:textColor="@color/black"
         android:fontFamily="@font/poppins_bold"
+        android:text="@string/label_touch"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:visibility="invisible"
-        android:indeterminateTint="@color/redDex"
-        android:id="@+id/pb_loading"
-        style="?android:attr/progressBarStyle"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_error"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_cancel"
+            app:tint="#C83737"
+            android:contentDescription="@string/error_icon" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/redDex"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

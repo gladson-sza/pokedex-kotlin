@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,7 +36,8 @@
             android:src="@drawable/ic_pokeball"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="#14000000" />
+            app:tint="#14000000"
+            android:contentDescription="@string/pokeball_icon" />
 
         <ImageView
             android:id="@+id/iv_pokemon"
@@ -48,7 +49,8 @@
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars"
+            android:contentDescription="@string/pokemon_icon" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -62,22 +64,22 @@
             <TextView
                 android:id="@+id/tv_type1"
                 style="@style/TextType"
-                android:layout_width="70dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_type_solid"
-                android:text="Type1" />
+                tools:text="Type1" />
 
             <TextView
                 android:id="@+id/tv_type2"
                 style="@style/TextType"
-                android:layout_width="70dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_type_solid"
-                android:text="Type2"
+                tools:text="Type2"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -87,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="About"
+            android:text="@string/label_about"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -96,7 +98,7 @@
             android:id="@+id/tv_label_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weight"
+            android:text="@string/label_weight"
             app:layout_constraintBottom_toBottomOf="@+id/divider_left"
             app:layout_constraintEnd_toEndOf="@+id/tv_weight"
             app:layout_constraintHorizontal_bias="0.5"
@@ -106,7 +108,7 @@
             android:id="@+id/tv_label_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Height"
+            android:text="@string/label_height"
             app:layout_constraintBottom_toBottomOf="@+id/divider_left"
             app:layout_constraintEnd_toEndOf="@+id/tv_height"
             app:layout_constraintHorizontal_bias="0.5"
@@ -116,7 +118,7 @@
             android:id="@+id/tv_label_abilities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Abilities"
+            android:text="@string/label_abilities"
             app:layout_constraintBottom_toBottomOf="@+id/divider_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -192,7 +194,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis eros vitae tellus condimentum maximus sit amet in eros."
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis eros vitae tellus condimentum maximus sit amet in eros."
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Base Stats"
+            android:text="@string/label_base_stats"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_description" />
@@ -233,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="HP"
+                    android:text="@string/label_hp"
                     android:textAlignment="viewEnd" />
 
                 <TextView
@@ -241,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="ATK"
+                    android:text="@string/label_atk"
                     android:textAlignment="viewEnd" />
 
                 <TextView
@@ -249,7 +251,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="DEF"
+                    android:text="@string/label_def"
                     android:textAlignment="viewEnd" />
 
                 <TextView
@@ -257,7 +259,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="SATK"
+                    android:text="@string/label_satk"
                     android:textAlignment="viewEnd" />
 
                 <TextView
@@ -265,7 +267,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="SDEF"
+                    android:text="@string/label_sdef"
                     android:textAlignment="viewEnd" />
 
                 <TextView
@@ -273,7 +275,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="SPD"
+                    android:text="@string/label_spd"
                     android:textAlignment="viewEnd" />
 
 
@@ -404,7 +406,8 @@
             android:src="@drawable/ic_back"
             app:layout_constraintBottom_toTopOf="@+id/view_card"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:contentDescription="@string/button_back" />
 
         <ImageButton
             android:id="@+id/btn_forward"
@@ -418,7 +421,8 @@
             android:src="@drawable/ic_forward"
             app:layout_constraintBottom_toTopOf="@+id/view_card"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:contentDescription="@string/button_next" />
 
         <ImageButton
             android:id="@+id/btn_back_to_home"
@@ -430,7 +434,8 @@
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:contentDescription="@string/button_back_to_home" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -460,4 +465,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

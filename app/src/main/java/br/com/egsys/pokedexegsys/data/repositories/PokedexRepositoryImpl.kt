@@ -1,7 +1,6 @@
 package br.com.egsys.pokedexegsys.data.repositories
 
 import android.database.sqlite.SQLiteException
-import android.util.Log
 import br.com.egsys.pokedexegsys.data.datasource.dao.AbilityDao
 import br.com.egsys.pokedexegsys.data.datasource.dao.PokemonDao
 import br.com.egsys.pokedexegsys.data.datasource.service.PokedexService
@@ -32,10 +31,11 @@ class PokedexRepositoryImpl(
         }
     }
 
-    override fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Unit> = flow {
+    override fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Int> = flow {
         try {
             val pkmList = mutableListOf<Pokemon>()
             val abilityList = mutableListOf<Ability>()
+            var count = 0
 
             pokemon.forEach {
                 val pkmDex = service.fetchPokemonById(it.entry_number)
@@ -51,13 +51,9 @@ class PokedexRepositoryImpl(
                     )
                 }
 
-                Log.i("DexRepository", "PKM DEX")
-
                 pkmDex.stats.forEach { pkmStat ->
                     statsMap[pkmStat.stat.name] = pkmStat.base_stat
                 }
-
-                Log.i("DexRepository", "STATS")
 
                 val baseStats = Stats(
                     hp = statsMap[StatName.HP.value],
@@ -68,18 +64,12 @@ class PokedexRepositoryImpl(
                     speed = statsMap[StatName.SPEED.value],
                 )
 
-                Log.i("DexRepository", "BASE STATS")
-                Log.i("DexRepository", "Types: ${pkmDex.types}")
-
-
                 val type1: String = pkmDex.types.first().type.name
                 var type2: String? = null
 
                 if (pkmDex.types.size > 1) {
                     type2 = pkmDex.types[1].type.name
                 }
-
-                Log.i("DexRepository", "SPECIE: $pkmSpecie")
 
                 pkmList.add(
                     Pokemon(
@@ -94,13 +84,13 @@ class PokedexRepositoryImpl(
                     )
                 )
 
-
+                emit(++count)
             }
 
             pokemonDao.insertAll(*pkmList.toTypedArray())
             abilityDao.insertAll(*abilityList.toTypedArray())
 
-            emit(Unit)
+
         } catch (ex: HttpException) {
             throw NetworkException(ex.message ?: "Cannot fetch pokemon entries")
         } catch (ex: SQLiteException) {
@@ -110,7 +100,12 @@ class PokedexRepositoryImpl(
 
     override fun searchPokemon(query: String, sortMode: SortMode): Flow<List<Pokemon>> = flow {
         try {
-            val pokemon = pokemonDao.findByNameAndIdDexSort(query)
+            val pokemon = when (sortMode) {
+                SortMode.DEX -> pokemonDao.findByNameAndIdDexSort(query)
+                SortMode.ALPHABETIC -> pokemonDao.findByNameAndIdNameSort(query)
+                SortMode.TYPE -> pokemonDao.findByNameAndIdTypeSort(query)
+            }
+
             emit(pokemon)
         } catch (ex: SQLiteException) {
             throw DatabaseException(ex.message ?: "Cannot insert on database")

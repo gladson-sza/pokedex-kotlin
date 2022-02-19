@@ -41,7 +41,7 @@
             tools:text="MissingNo" />
 
         <TextView
-            android:width="70dp"
+            android:width="80dp"
             android:id="@+id/tv_type1"
             style="@style/TextType"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             tools:text="Type 1" />
 
         <TextView
-            android:width="70dp"
+            android:width="80dp"
             android:id="@+id/tv_type2"
             style="@style/TextType"
             android:visibility="invisible"
@@ -73,6 +73,7 @@
             android:backgroundTint="#14000000"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/pokeball_icon"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

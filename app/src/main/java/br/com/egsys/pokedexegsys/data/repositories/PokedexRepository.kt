@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokedexRepository {
     fun fetchEntriesFromApi(): Flow<PokedexEntries>
-    fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Unit>
+    fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Int>
     fun searchPokemon(query: String, sortMode: SortMode): Flow<List<Pokemon>>
     fun getAllPokemon(sortMode: SortMode): Flow<List<Pokemon>>
     fun getPokemonData(id: Int): Flow<Pair<Pokemon, List<Ability>>>

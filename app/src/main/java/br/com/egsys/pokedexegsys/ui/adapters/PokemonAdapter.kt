@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import br.com.egsys.pokedexegsys.data.model.storage.Pokemon
+import br.com.egsys.pokedexegsys.R
 import br.com.egsys.pokedexegsys.data.model.TypeColor
+import br.com.egsys.pokedexegsys.data.model.storage.Pokemon
 import br.com.egsys.pokedexegsys.databinding.ItemPokemonCardBinding
 import br.com.egsys.pokedexegsys.util.Util
 import br.com.egsys.pokedexegsys.util.setBackgroundTintColor
@@ -44,7 +45,10 @@ class PokemonAdapter(
                 .into(binding.ivPokemon)
 
             binding.tvPokemonName.text = item.name.replaceFirstChar { it.uppercase() }
-            binding.tvDexNumber.text = "#${item.id.toString().padStart(3, '0')}"
+            binding.tvDexNumber.text = binding.root.context.resources.getString(
+                R.string.adapter_dex_number,
+                item.id.toString().padStart(3, '0')
+            )
 
             binding.card.setBackgroundTintColor(TypeColor.valueOf(item.type1.uppercase()).color)
             binding.card.setOnClickListener { onCardClickListener.invoke(item) }

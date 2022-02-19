@@ -1,6 +1,5 @@
 package br.com.egsys.pokedexegsys.ui.details
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,14 +10,13 @@ import br.com.egsys.pokedexegsys.data.model.storage.Pokemon
 import br.com.egsys.pokedexegsys.data.repositories.PokedexRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
     private val repository: PokedexRepository,
-    private val preferences: AppPreference
+    preferences: AppPreference
 ) : ViewModel() {
 
     private val _pokemonData = MutableLiveData<PokemonDataState>()

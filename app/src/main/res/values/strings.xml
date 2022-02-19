@@ -1,10 +1,39 @@
 <resources>
     <string name="app_name">Pokedex egSYS</string>
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pokedex">Pokédex</string>
+    <string name="error_icon">Error icon</string>
+    <string name="label_touch">TOUCH</string>
+    <string name="top_of_pokedex">Top of pokédex</string>
+    <string name="bottom_of_pokedex">Bottom of pokédex</string>
+    <string name="pokeball_icon">Pokeball icon</string>
+    <string name="pokemon_icon">Pokemon icon</string>
+    <string name="label_about">About</string>
+    <string name="label_weight">Weight</string>
+    <string name="label_height">Height</string>
+    <string name="label_abilities">Abilities</string>
+    <string name="label_base_stats">Base Stats</string>
+    <string name="label_hp">HP</string>
+    <string name="label_atk">ATK</string>
+    <string name="label_def">DEF</string>
+    <string name="label_satk">SATK</string>
+    <string name="label_sdef">SDEF</string>
+    <string name="label_spd">SPD</string>
+    <string name="button_back">Button back</string>
+    <string name="button_next">Button next</string>
+    <string name="button_back_to_home">Button back to home</string>
+    <string name="description_sort_a_random_pokemon_details">Sort a random pokemon details</string>
+    <string name="label_dex">Dex</string>
+    <string name="label_alphabetic">Alphabetic</string>
+    <string name="label_sort_by">Sort By:</string>
+    <string name="label_type">Type</string>
+
+    <string name="adapter_dex_number">#%1$s</string>
+    <string name="label_kg">%1$s Kg</string>
+    <string name="label_m">%1$s m</string>
+
+    <string name="label_loading_data_status">Getting pokemon data (%1$d/%2$d)</string>
+    <string name="label_loading_data">Getting pokemon data (%1$d/%2$d)</string>
+    <string name="label_fetching_entries">Fetching pokédex entries…</string>
+    <string name="error_fetching_entries">Couldn\'t get pokedex entries, verify your internet connection</string>
+    <string name="error_getting_data">Failed to get some pokémon data, verify your internet connection</string>
 </resources>

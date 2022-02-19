@@ -1,114 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/tv_title"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_random_pokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/pokedex"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/description_sort_a_random_pokemon_details"
+        android:src="@drawable/ic_pokeball"
+        app:backgroundTint="@color/redDex"
+        app:tint="@color/white" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/sv_search"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/bg_sv"
-        app:iconifiedByDefault="false"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:queryBackground="@drawable/bg_sv"
-        app:queryHint="Search pokemon by name"
-        app:searchIcon="@drawable/ic_search" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    </androidx.appcompat.widget.SearchView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPokemonCard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/item_pokemon_card" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/sv_search"
-        app:selectionRequired="true"
-        app:singleLine="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_dex_number"
-            style="@style/AppChipStyle"
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:checked="true"
-            android:text="Dex Number"
-            app:checkedIconEnabled="false"
-            app:chipBackgroundColor="@color/bg_chip_state_list" />
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/pokedex"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_alphabetic"
-            style="@style/AppChipStyle"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_search_pokemon"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_sv"
+            app:iconifiedByDefault="false"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:queryBackground="@drawable/bg_sv"
+            app:queryHint="Search pokemon by name"
+            app:searchIcon="@drawable/ic_search">
+
+        </androidx.appcompat.widget.SearchView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPokemonCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/item_pokemon_card" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="Alphabetic"
-            app:checkedIconEnabled="false"
-            app:chipBackgroundColor="@color/bg_chip_state_list" />
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/sv_search_pokemon"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chi_type"
-            style="@style/AppChipStyle"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_dex_number"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:checked="true"
+                android:text="@string/label_dex"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_alphabetic"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/label_alphabetic"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chi_type"
+                style="@style/AppChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:checkable="true"
+                android:text="@string/label_type"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/bg_chip_state_list" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:checkable="true"
-            android:text="Type"
-            app:checkedIconEnabled="false"
-            app:chipBackgroundColor="@color/bg_chip_state_list" />
-    </com.google.android.material.chip.ChipGroup>
+            android:layout_marginStart="16dp"
+            android:drawablePadding="4dp"
+            android:elevation="4dp"
+            android:padding="2dp"
+            android:text="@string/label_sort_by"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/ic_sort"
+            app:layout_constraintBottom_toBottomOf="@+id/chipGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/chipGroup" />
 
-    <TextView
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:text="Sort By:"
-        android:padding="2dp"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:layout_marginStart="16dp"
-        android:drawablePadding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chipGroup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chipGroup"
-        app:drawableStartCompat="@drawable/ic_sort" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

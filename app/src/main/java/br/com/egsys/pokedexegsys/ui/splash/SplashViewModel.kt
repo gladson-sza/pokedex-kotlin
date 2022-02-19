@@ -11,7 +11,6 @@ import br.com.egsys.pokedexegsys.data.repositories.PokedexRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
@@ -29,12 +28,18 @@ class SplashViewModel(
     private val _databaseInsertion = MutableLiveData<DatabaseInsertionState>()
     val databaseInsertion: LiveData<DatabaseInsertionState> = _databaseInsertion
 
+    private var _totalEntries = 0
+    val totalEntries get() = _totalEntries
+
+    fun commitEntries() = preferences.setEntryQuantity(_totalEntries)
+
     fun fetchPokedexEntries() = viewModelScope.launch(Dispatchers.IO) {
         repository.fetchEntriesFromApi().onStart {
             _pokedexEntries.postValue(PokedexEntriesState.Loading)
         }.catch {
             _pokedexEntries.postValue(PokedexEntriesState.Error(it))
         }.collect {
+            _totalEntries = it.pokemon_entries.size
             _pokedexEntries.postValue(PokedexEntriesState.Success(it))
         }
     }
@@ -47,8 +52,7 @@ class SplashViewModel(
         }.catch {
             _databaseInsertion.postValue(DatabaseInsertionState.Error(it))
         }.collect {
-            preferences.setEntryQuantity(pokemonEntries.size)
-            _databaseInsertion.postValue(DatabaseInsertionState.Success(pokemonEntries.size))
+            _databaseInsertion.postValue(DatabaseInsertionState.Success(it))
         }
     }
 
@@ -65,7 +69,7 @@ class SplashViewModel(
 
     sealed class DatabaseInsertionState {
         object Loading : DatabaseInsertionState()
-        data class Success(val entriesSize: Int) : DatabaseInsertionState()
+        data class Success(val entryNumber: Int) : DatabaseInsertionState()
         data class Error(val error: Throwable) : DatabaseInsertionState()
     }
 }

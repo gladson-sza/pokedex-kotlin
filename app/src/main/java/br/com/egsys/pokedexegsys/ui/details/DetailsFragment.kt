@@ -2,11 +2,10 @@ package br.com.egsys.pokedexegsys.ui.details
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
-import android.view.*
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ArrayAdapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,6 +18,7 @@ import br.com.egsys.pokedexegsys.ui.adapters.AbilityAdapter
 import br.com.egsys.pokedexegsys.util.Util
 import br.com.egsys.pokedexegsys.util.setBackgroundTintColor
 import br.com.egsys.pokedexegsys.util.setIsVisible
+import br.com.egsys.pokedexegsys.util.setStatusBarColor
 import com.bumptech.glide.Glide
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -70,11 +70,7 @@ class DetailsFragment : Fragment() {
 
     private fun loadPokemonDetails(pokemon: Pokemon, abilities: List<Ability>) {
         val mainColor = Util.stringTypeToColor(pokemon.type1)
-
-        val window = activity?.window
-        window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window?.statusBarColor = mainColor
+        setStatusBarColor(mainColor)
 
         Glide.with(requireContext())
             .load(Util.getPokemonImageUrl(pokemon.id))
@@ -82,7 +78,10 @@ class DetailsFragment : Fragment() {
 
         binding.root.setBackgroundColor(mainColor)
         binding.tvTitle.text = pokemon.name.replaceFirstChar { it.uppercase() }
-        binding.tvDexNumber.text = "#${pokemon.id.toString().padStart(3, '0')}"
+        binding.tvDexNumber.text = requireContext().resources.getString(
+            R.string.adapter_dex_number,
+            pokemon.id.toString().padStart(3, '0')
+        )
         binding.tvType1.text = pokemon.type1.replaceFirstChar { it.uppercase() }
         binding.tvType1.setBackgroundTintColor(TypeColor.valueOf(pokemon.type1.uppercase()).color)
 
@@ -97,10 +96,17 @@ class DetailsFragment : Fragment() {
         }
 
 
-        binding.tvWeight.text = "${pokemon.weight / 10.0} Kg"
-        binding.tvHeight.text = "${(pokemon.height / 10.0)} m"
+        binding.tvWeight.text = requireContext().resources.getString(
+            R.string.label_kg,
+            (pokemon.weight / 10.0).toString()
+        )
 
-        binding.tvDescription.text = pokemon.description.replace("\n", " ");
+        binding.tvHeight.text = requireContext().resources.getString(
+            R.string.label_m,
+            (pokemon.weight / 10.0).toString()
+        )
+
+        binding.tvDescription.text = pokemon.description.replace("\n", " ")
 
         binding.tvHpLabel.setTextColor(mainColor)
         binding.tvAtkLabel.setTextColor(mainColor)
