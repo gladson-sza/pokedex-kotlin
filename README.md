@@ -5,7 +5,7 @@
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_splash.png)  |  ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_home.png) | ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_details.png)
 
-# Resources
+# 📦 Resources
 
 * Community details screen [Pokedex](https://www.figma.com/community/file/979132880663340794) by [Ricardo Schiniegoski](https://www.figma.com/@ricardohs)  
 * Public API: [PokéAPI](https://pokeapi.co/) 
@@ -13,22 +13,16 @@
 
 # 📄 Docs
 
-* [Documentation (en)](#%F0%9F%93%84-documentation)
+* [Documentation (en)](#documentation)
   * [Features](#features)
   * [Flow](#flow)
   * [Architecture](#architecture)
-  * [Packages](#%F0%9F%93%A6-packages)
-  * [Libs](#%F0%9F%93%97-libs)
-  * [Build](#%E2%9A%99-build)
-* [Documentação (pt-BR)](#%F0%9F%93%84-documenta%C3%A7%C3%A3o-pt-br)
-  * [Funcionalidades](#funcionalidades)
-  * [Arquitetura](#architecture)
-  * [Divisão de Pacotes](#%F0%9F%93%A6-divis%C3%A3o-de-pacotes)
-  * [Bibliotecas](#%F0%9F%93%97-bibliotecas)
-  * [Compilação](#%E2%9A%99-compila%C3%A7%C3%A3o)
+  * [Packages](#packages)
+  * [Libs](#libs)
+  * [Build](#build)
 * [License](#license)
 
-# 📄 Documentation
+# Documentation
 Pokédex application, containing the data of all pokémons, the app makes data requests to the PokéAPI and saves them locally so that the user can have offline access to the data.
 
 # Features
@@ -76,7 +70,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 
 ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/data_diagram.png)
 
-# 📦 Packages
+# Packages
 ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/packages.png) 
 
 ## Description
@@ -88,7 +82,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 **/ui** &rarr; Contains Activities, Fragments, Adapters and ViewModels classes (Works as a controller)  
 **/util** &rarr; Contains utility classes and [kotlin extensions](https://kotlinlang.org/docs/extensions.html) for code reuse
 
-# 📗 Libs
+# Libs
 * [Koin](https://insert-koin.io/) for Dependency Injection
 * [Room](https://developer.android.com/training/data-storage/room) for persistency
 * [Glide](https://github.com/bumptech/glide) for image loading
@@ -98,7 +92,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 * [Navigation](https://developer.android.com/guide/navigation) for navigation between fragments
 * [Dokka](https://github.com/Kotlin/dokka) for code documentation
 
-# ⚙ Build
+# Build
 
 * [Create](https://developer.android.com/studio/run/managing-avds#createavd) an ADV Device
 * [Boot up](https://developer.android.com/studio/run/managing-avds#emulator) your ADV Device
@@ -111,92 +105,6 @@ Build your app with gradle
   gradlew installDebug
 ```
 Open your device and search for your installed 'Pokedex egSYS' apk
-
-
-# 📄 Documentação (pt-BR)
-
-Aplicativo de Pokédex, contendo os dados de todos os pokémons, o app realiza requisições dos dados para  PokéAPI e os salva localmente para que o usuário possa ter acesso offline aos dados.
-
-# Funcionalidades
-* Todas as entradas oficiais da pokédex
-* Busca por nome
-* Detalhes dos pokémon
-* Persistência local
-
-# Fluxo
-
-* ## Splash
-Nesta tela, é apresentada a logo com um botão.  Ao clicar no botão, é feita uma verificação para saber se os dados já estão persistidos, se não houverem dados salvos é iniciada uma requisição para obter os dados de todos os pokémons e salvá-los localmente.
-
-Caso haja dados salvos, ou foi possível obter e salvar os dados da API, o usuário é redirecionado para a tela de Home.
-
-* ## Home
-Nesta tela serão carregados em uma lista os dados salvos dos pokémons, por padrão, a lista virá ordenada pelo número da pokédex. A lista é composta por cards, com as cores do pokémon, o seu nome, foto e tipo, ao clicar no card o usuário será direcionaod para tela de detalhes daquele pokémon.
-
-Logo acima na tela, o usuário pode pesquisar um pokémon pelo seu nome.
-
-É possível filtrar a lista pelo número da pokédex, em ordem alfabética ou ordem de tipos.
-
-Ainda nesta tela, há um botão que abrirá a tela de detalhes para um pokémon aleatório
-
-* ## Details
-Nesta tela é exibido os detalhes do pokémon, com dados como o seu nome, foto, tipos, peso, altura, possíveis abilidades, descrição da pokédex e seu status base. A tela se adaptará a cor do tipo primário do pokémon.
-
-No canto superior esquerdo, há um botão para voltar para a home.
-
-Nos cantos direito e esquerdo, é possível navegar entre os pokémons, o botão da esquerda levará para o pokémon antecessor pelo número da pokédex, o botão da direita levará para o pokémon sucessor pelo número da pokédex. Caso esteja no primeiro pokémon da lista, o botão da esquerda não irá aparecer, caso esteja no útlimo pokémon da lista, o botão da direita não irá aparecer.
-
-
-# Arquitetura
-A arquitetura do projeto é dividida em camadas, seguindo o padrão MVVM, com as camadas de Interface, Domínio e Dados. [Mais detalhes de arquitetura](https://developer.android.com/jetpack/guide)
-
-![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/layer_diagram.png) 
-
-## Interface
-A camada de interface é a responsável por lidar com a apresentação dos dados e interação com o usuário
-
-## Domínio
-A camada de domínio é a camada intermediária entre a camada de interface e de dados, sendo esta a responsável por realizar a chamada de dados, lidar com regras de negócio e então notificar a camada de interface. Equivalente ao controller.
-
-## Dados
-A camada de dados é responsável tanto realizar chamadas à API quanto fazer a persistência no banco de dados local, além de conter regras de negócio
-
-![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/data_diagram.png)
-
-# 📦 Divisão de Pacotes
-![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/packages.png) 
-
-## Descrição
-
-**/di** &rarr; Contém os módulos de injeção de dependência do [Koin](https://insert-koin.io/)  
-**/data** &rarr; Contém classes relacioandas à camada de dados como Models, DAOs, Services, DataSources e Repository  
-**/exceptions** &rarr; Contém classes de excessões customizadas  
-**/ui** &rarr; Contém classes de Activities, Fragments, Adapters e ViewModels (Funciona como controller)  
-**/util** &rarr; Contém classes utilitárias e [kotlin extensions](https://kotlinlang.org/docs/extensions.html) para reaproveitamento de código
-
-# 📗 Bibliotecas
-* [Koin](https://insert-koin.io/) para injeção de dependência
-* [Room](https://developer.android.com/training/data-storage/room) para persistência
-* [Glide](https://github.com/bumptech/glide) para imagens
-* [Retrofit2](https://square.github.io/retrofit/) para HTTP
-* [Moshi](https://github.com/square/moshi) para Serialização
-* [Coroutines](https://developer.android.com/kotlin/coroutines?hl=pt-br) para Reatividade
-* [Navigation](https://developer.android.com/guide/navigation) para navegação entre fragments
-* [Dokka](https://github.com/Kotlin/dokka) para documentação do código
-
-# ⚙ Compilação
-
-* [Crie](https://developer.android.com/studio/run/managing-avds#createavd) um dispositivo virtual
-* [Inicie](https://developer.android.com/studio/run/managing-avds#emulator) seu dispositivo virtual
-
-
-Compile o apk utilizando o gradle
-```shell
-  git clone https://github.com/gladson-sza/pokedex-egsys.git
-  cd /pokedex-egsys
-  gradlew installDebug
-```
-Abra seu dispositivo virutal e procure pelo aplicativo instalado 'Pokedex egSYS'
 
 # License
 
