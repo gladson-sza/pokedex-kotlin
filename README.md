@@ -96,6 +96,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 * [Moshi](https://github.com/square/moshi) for serialization
 * [Coroutines](https://developer.android.com/kotlin/coroutines) for Reactivity
 * [Navigation](https://developer.android.com/guide/navigation) for navigation between fragments
+* [Dokka](https://github.com/Kotlin/dokka) for code documentation
 
 # ⚙ Build
 
@@ -181,6 +182,7 @@ A camada de dados é responsável tanto realizar chamadas à API quanto fazer a 
 * [Moshi](https://github.com/square/moshi) para Serialização
 * [Coroutines](https://developer.android.com/kotlin/coroutines?hl=pt-br) para Reatividade
 * [Navigation](https://developer.android.com/guide/navigation) para navegação entre fragments
+* [Dokka](https://github.com/Kotlin/dokka) para documentação do código
 
 # ⚙ Compilação
 
