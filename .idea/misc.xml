@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_dice.xml" value="0.3455" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_forward.xml" value="0.187" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3325" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1555" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_pokeball.xml" value="0.3325" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_pokedex_top.xml" value="0.239" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/drawable/ic_search.xml" value="0.287" />
@@ -32,6 +33,8 @@
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/item_pokemon_card.xml" value="0.33" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/pokemon_card_item.xml" value="0.3625" />
         <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/layout/toolbar_details.xml" value="0.3569230769230769" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1555" />
+        <entry key="..\:/Users/Gladson/AndroidStudioProjects/PokedexegSYS/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1555" />
         <entry key="..\:/Users/Gladson/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.3569230769230769" />
       </map>
     </option>
