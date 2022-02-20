@@ -22,10 +22,17 @@ class HomeViewModel(
 
     private var _sortMode = SortMode.DEX
 
+    /**
+     * Changes the state of sort mode variable
+     */
     fun setSortMode(sortType: SortMode) {
         _sortMode = sortType
     }
 
+    /**
+     * Load pokémon data based on current sort mode
+     * If Sort mode was not changed, the default sort mode will be DEX
+     */
     fun loadPokemonData() = viewModelScope.launch(Dispatchers.IO) {
         repository.getAllPokemon(_sortMode).onStart {
             _pokemonData.postValue(PokemonDataState.Loading)
@@ -37,6 +44,9 @@ class HomeViewModel(
         }
     }
 
+    /**
+     * Do a search based on pokémon name
+     */
     fun search(query: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.searchPokemon(query, _sortMode).onStart {
             _pokemonData.postValue(PokemonDataState.Loading)

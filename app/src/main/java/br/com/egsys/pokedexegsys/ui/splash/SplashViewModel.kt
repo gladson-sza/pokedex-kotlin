@@ -31,8 +31,14 @@ class SplashViewModel(
     private var _totalEntries = 0
     val totalEntries get() = _totalEntries
 
+    /**
+     * Save the number of pokémon entries
+     */
     fun commitEntries() = preferences.setEntryQuantity(_totalEntries)
 
+    /**
+     * Fetch generic pokédex entries (entry number only)
+     */
     fun fetchPokedexEntries() = viewModelScope.launch(Dispatchers.IO) {
         repository.fetchEntriesFromApi().onStart {
             _pokedexEntries.postValue(PokedexEntriesState.Loading)
@@ -44,6 +50,10 @@ class SplashViewModel(
         }
     }
 
+    /**
+     * Fetch async each pokédex entries, then emit that a entrie was fetched, emit one last entry
+     * flag that indicates that the entries was persisted in sqlite
+     */
     fun insertOnDatabase(pokemonEntries: List<PokemonEntry>) = viewModelScope.launch(
         Dispatchers.IO
     ) {

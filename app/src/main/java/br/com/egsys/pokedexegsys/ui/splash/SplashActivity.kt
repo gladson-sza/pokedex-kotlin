@@ -81,6 +81,9 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Shows for 1.6s a error message then closes the pokédex
+     */
     private fun errorGettingDataAnimation(message: String) {
         binding.pbLoading.setIsVisible(false)
         binding.ivError.setIsVisible(true)
@@ -95,6 +98,9 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Smoothly opens half pokédex then start loading animation
+     */
     private fun loadingDataAnimation(message: String) {
         binding.ivPokedexBottom
             .animate()
@@ -117,6 +123,9 @@ class SplashActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Smoothly opens the pokédex then starts the MainActivity
+     */
     private fun openAnimation() {
         binding.tvTouch.animate()
             .alpha(0f)
@@ -139,6 +148,9 @@ class SplashActivity : AppCompatActivity() {
             .duration = 500
     }
 
+    /**
+     * Smoothly closes the pokédex
+     */
     private fun resetPositionAnimation() {
         binding.ivPokedexBottom
             .animate()

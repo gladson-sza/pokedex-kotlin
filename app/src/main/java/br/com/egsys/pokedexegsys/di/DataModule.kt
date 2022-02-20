@@ -24,6 +24,9 @@ object DataModule {
         repositoryModule(),
     )
 
+    /**
+     * Create a retrofit service from a retrofit noted interface
+     */
     private inline fun <reified T> createService(
         client: OkHttpClient,
         factory: MoshiConverterFactory
@@ -36,6 +39,9 @@ object DataModule {
             .create(T::class.java)
     }
 
+    /**
+     * Create network modules related
+     */
     private fun networkModules() = module {
         single {
             val interceptor = HttpLoggingInterceptor {
@@ -53,12 +59,18 @@ object DataModule {
         single { createService<PokedexService>(get(), get()) }
     }
 
+    /**
+     * Create offline storage related modules
+     */
     private fun databaseModule() = module {
         single { AppDatabase.getInstance(androidContext()).pokemonDao() }
         single { AppDatabase.getInstance(androidContext()).abilityDao() }
         single { AppPreference(androidContext()) }
     }
 
+    /**
+     * Create repository modules
+     */
     private fun repositoryModule() = module {
         single<PokedexRepository> { PokedexRepositoryImpl(get(), get(), get()) }
     }

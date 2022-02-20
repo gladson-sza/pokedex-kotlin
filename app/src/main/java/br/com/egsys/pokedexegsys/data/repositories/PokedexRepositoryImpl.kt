@@ -36,7 +36,6 @@ class PokedexRepositoryImpl(
     }
 
     private suspend fun getData(entryNumber: Int): Pair<Pokemon, List<Ability>> {
-
         val pkmDex = service.fetchPokemonById(entryNumber)
         val pkmSpecie = service.fetchPokemonSpecieById(entryNumber)
         val abilities = mutableListOf<Ability>()
@@ -85,6 +84,13 @@ class PokedexRepositoryImpl(
         )
     }
 
+    /**
+     * Fetch a pokémon data by a given pokémon entry list, then exec all requests async emitting
+     * the entry counter.
+     *
+     * After wait all the results, the pokémon data is peristed locally then is emitted one last
+     * counter that indicates that the data was persisted
+     */
     override fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Int> = flow {
         try {
             val pkmList = mutableListOf<Deferred<Pair<Pokemon, List<Ability>>>>()
@@ -101,12 +107,10 @@ class PokedexRepositoryImpl(
             }
 
             val (pkms, abilities) = pkmList.awaitAll().toList().unzip()
-            emit(pkmList.awaitAll().size + 1)
-
             pokemonDao.insertAll(*pkms.toTypedArray())
             abilities.forEach { abilityDao.insertAll(*it.toTypedArray()) }
 
-
+            emit(pkmList.awaitAll().size + 1)
         } catch (ex: HttpException) {
             throw NetworkException(ex.message ?: "Cannot fetch pokemon entries")
         } catch (ex: SQLiteException) {
@@ -114,6 +118,9 @@ class PokedexRepositoryImpl(
         }
     }
 
+    /**
+     * Do a search based on a query and a given SortMode
+     */
     override fun searchPokemon(query: String, sortMode: SortMode): Flow<List<Pokemon>> = flow {
         try {
             val pokemon = when (sortMode) {
@@ -128,6 +135,9 @@ class PokedexRepositoryImpl(
         }
     }
 
+    /**
+     * Get all stored pokémon data and sort by a given SortMode
+     */
     override fun getAllPokemon(sortMode: SortMode): Flow<List<Pokemon>> = flow {
         try {
             val pokemon = when (sortMode) {
@@ -142,6 +152,11 @@ class PokedexRepositoryImpl(
         }
     }
 
+    /**
+     * Get a single pokémon data by id and returns a Pair with Pokemon and a list of his abilities
+     *
+     * @param id: (Pokémon dex entry)
+     */
     override fun getPokemonData(id: Int): Flow<Pair<Pokemon, List<Ability>>> = flow {
         try {
             val pokemon = pokemonDao.findById(id)

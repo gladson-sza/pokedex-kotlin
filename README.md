@@ -9,11 +9,13 @@
 
 * Community details screen [Pokedex](https://www.figma.com/community/file/979132880663340794) by [Ricardo Schiniegoski](https://www.figma.com/@ricardohs)  
 * Public API: [PokéAPI](https://pokeapi.co/) 
+* JavaDoc: [Doc](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/javadoc/index.md)
 
 # 📄 Docs
 
 * [Documentation (en)](#%F0%9F%93%84-documentation)
   * [Features](#features)
+  * [Flow](#flow)
   * [Architecture](#architecture)
   * [Packages](#%F0%9F%93%A6-packages)
   * [Libs](#%F0%9F%93%97-libs)
@@ -35,6 +37,28 @@ Pokédex application, containing the data of all pokémons, the app makes data r
 * Pokémon details
 * Offline persistence
 
+# Flow
+
+* ## Splash
+On this screen, the logo with a button is displayed. When clicking on the button, a check is made to see if the data is already persisted, if there is no saved data, a request is initiated to obtain the data of all pokémons and save them locally.
+
+If there is saved data, or it was possible to obtain and save data from the API, the user is redirected to the Home screen.
+
+* ## Home
+In this screen, the saved data of the pokémons will be loaded in a list, by default, the list will be ordered by the pokédex number. The list is composed of cards, with the colors of the pokémon, its name, photo and type, when clicking on the card the user will be directed to the details screen of that pokémon.
+
+Just above the screen, the user can search for a pokémon by its name.
+
+You can filter the list by Pokédex number, alphabetically or sort order.
+
+Also on this screen is a button that will open the details screen for a random pokemon
+
+* ## Details
+This screen displays the pokémon's details, with data such as its name, photo, types, weight, height, possible abilities, pokédex description and its base status. The screen will adapt to the color of the Pokémon's primary type.
+
+In the upper left corner, there is a button to go back to home.
+
+In the right and left corners, it is possible to navigate between the pokémons, the left button will take to the predecessor pokémon by the pokédex number, the right button will lead to the successor pokémon by the pokédex number. If you are on the first pokémon on the list, the left button will not appear, if you are on the last pokémon on the list, the right button will not appear.
 
 # Architecture
 The project architecture is divided into layers, following the MVVM pattern, with UI, Domain and Data layers. [More architecture details](https://developer.android.com/jetpack/guide)
@@ -66,6 +90,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 
 # 📗 Libs
 * [Koin](https://insert-koin.io/) for Dependency Injection
+* [Room](https://developer.android.com/training/data-storage/room) for persistency
 * [Glide](https://github.com/bumptech/glide) for image loading
 * [Retrofit2](https://square.github.io/retrofit/) for HTTP
 * [Moshi](https://github.com/square/moshi) for serialization
@@ -75,7 +100,7 @@ The data layer is responsible for both making API calls and persisting in the lo
 # ⚙ Build
 
 * [Create](https://developer.android.com/studio/run/managing-avds#createavd) an ADV Device
-* [Boot up]((https://developer.android.com/studio/run/managing-avds#emulator)) your ADV Device
+* [Boot up](https://developer.android.com/studio/run/managing-avds#emulator) your ADV Device
 
 
 Build your app with gradle
@@ -96,6 +121,30 @@ Aplicativo de Pokédex, contendo os dados de todos os pokémons, o app realiza r
 * Busca por nome
 * Detalhes dos pokémon
 * Persistência local
+
+# Fluxo
+
+* ## Splash
+Nesta tela, é apresentada a logo com um botão.  Ao clicar no botão, é feita uma verificação para saber se os dados já estão persistidos, se não houverem dados salvos é iniciada uma requisição para obter os dados de todos os pokémons e salvá-los localmente.
+
+Caso haja dados salvos, ou foi possível obter e salvar os dados da API, o usuário é redirecionado para a tela de Home.
+
+* ## Home
+Nesta tela serão carregados em uma lista os dados salvos dos pokémons, por padrão, a lista virá ordenada pelo número da pokédex. A lista é composta por cards, com as cores do pokémon, o seu nome, foto e tipo, ao clicar no card o usuário será direcionaod para tela de detalhes daquele pokémon.
+
+Logo acima na tela, o usuário pode pesquisar um pokémon pelo seu nome.
+
+É possível filtrar a lista pelo número da pokédex, em ordem alfabética ou ordem de tipos.
+
+Ainda nesta tela, há um botão que abrirá a tela de detalhes para um pokémon aleatório
+
+* ## Details
+Nesta tela é exibido os detalhes do pokémon, com dados como o seu nome, foto, tipos, peso, altura, possíveis abilidades, descrição da pokédex e seu status base. A tela se adaptará a cor do tipo primário do pokémon.
+
+No canto superior esquerdo, há um botão para voltar para a home.
+
+Nos cantos direito e esquerdo, é possível navegar entre os pokémons, o botão da esquerda levará para o pokémon antecessor pelo número da pokédex, o botão da direita levará para o pokémon sucessor pelo número da pokédex. Caso esteja no primeiro pokémon da lista, o botão da esquerda não irá aparecer, caso esteja no útlimo pokémon da lista, o botão da direita não irá aparecer.
+
 
 # Arquitetura
 A arquitetura do projeto é dividida em camadas, seguindo o padrão MVVM, com as camadas de Interface, Domínio e Dados. [Mais detalhes de arquitetura](https://developer.android.com/jetpack/guide)
@@ -126,6 +175,7 @@ A camada de dados é responsável tanto realizar chamadas à API quanto fazer a 
 
 # 📗 Bibliotecas
 * [Koin](https://insert-koin.io/) para injeção de dependência
+* [Room](https://developer.android.com/training/data-storage/room) para persistência
 * [Glide](https://github.com/bumptech/glide) para imagens
 * [Retrofit2](https://square.github.io/retrofit/) para HTTP
 * [Moshi](https://github.com/square/moshi) para Serialização
@@ -135,7 +185,7 @@ A camada de dados é responsável tanto realizar chamadas à API quanto fazer a 
 # ⚙ Compilação
 
 * [Crie](https://developer.android.com/studio/run/managing-avds#createavd) um dispositivo virtual
-* [Inicie]((https://developer.android.com/studio/run/managing-avds#emulator)) seu dispositivo virtual
+* [Inicie](https://developer.android.com/studio/run/managing-avds#emulator) seu dispositivo virtual
 
 
 Compile o apk utilizando o gradle

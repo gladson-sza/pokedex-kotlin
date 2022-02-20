@@ -7,6 +7,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object ViewModelModules {
+
+    /**
+     * ViewModel inject classes
+     */
     fun getModules() = module {
         viewModel { SplashViewModel(get(), get()) }
         viewModel { HomeViewModel(get()) }

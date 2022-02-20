@@ -68,6 +68,9 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Load pokémon details on screen and change background color by 1st type of pokémon
+     */
     private fun loadPokemonDetails(pokemon: Pokemon, abilities: List<Ability>) {
         val mainColor = Util.stringTypeToColor(pokemon.type1)
         setStatusBarColor(mainColor)

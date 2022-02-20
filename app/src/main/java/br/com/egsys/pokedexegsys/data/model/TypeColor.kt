@@ -1,5 +1,8 @@
 package br.com.egsys.pokedexegsys.data.model
 
+/**
+ * Each color is related to a type, use this to return a Hex color string
+ */
 enum class TypeColor(val color: String) {
     ROCK("#B69E31"),
     GHOST("#70559B"),
