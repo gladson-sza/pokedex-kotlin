@@ -5,18 +5,26 @@
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_splash.png)  |  ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_home.png) | ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_details.png)
 
-# 💻Usage
+# Resources
 
-* [Documentation (en)](#documentation)
+* Community details screen [Pokedex](https://www.figma.com/community/file/979132880663340794) by [Ricardo Schiniegoski](https://www.figma.com/@ricardohs)  
+* Public API: [PokéAPI](https://pokeapi.co/) 
+
+# 📄 Docs
+
+* [Documentation (en)](#%F0%9F%93%84-documentation)
   * [Features](#features)
   * [Architecture](#architecture)
-  * [Packages](#ackages)
-  * [Build](#build)
-* [Documentação (pt-BR)](#documenta%C3%A7%C3%A3o-pt-br)
+  * [Packages](#%F0%9F%93%A6-packages)
+  * [Libs](#%F0%9F%93%97-libs)
+  * [Build](#%E2%9A%99-build)
+* [Documentação (pt-BR)](#%F0%9F%93%84-documenta%C3%A7%C3%A3o-pt-br)
   * [Funcionalidades](#funcionalidades)
   * [Arquitetura](#architecture)
-  * [Divisão de Pacotes](#divis%C3%A3o-de-pacotes)
-  * [Compilação](#compila%C3%A7%C3%A3o)
+  * [Divisão de Pacotes](#%F0%9F%93%A6-divis%C3%A3o-de-pacotes)
+  * [Bibliotecas](#%F0%9F%93%97-bibliotecas)
+  * [Compilação](#%E2%9A%99-compila%C3%A7%C3%A3o)
+* [License](#license)
 
 # 📄 Documentation
 Pokédex application, containing the data of all pokémons, the app makes data requests to the PokéAPI and saves them locally so that the user can have offline access to the data.
@@ -26,6 +34,7 @@ Pokédex application, containing the data of all pokémons, the app makes data r
 * Search by name
 * Pokémon details
 * Offline persistence
+
 
 # Architecture
 The project architecture is divided into layers, following the MVVM pattern, with UI, Domain and Data layers. [More architecture details](https://developer.android.com/jetpack/guide)
@@ -55,7 +64,15 @@ The data layer is responsible for both making API calls and persisting in the lo
 **/ui** &rarr; Contains Activities, Fragments, Adapters and ViewModels classes (Works as a controller)  
 **/util** &rarr; Contains utility classes and [kotlin extensions](https://kotlinlang.org/docs/extensions.html) for code reuse
 
-# Build
+# 📗 Libs
+* [Koin](https://insert-koin.io/) for Dependency Injection
+* [Glide](https://github.com/bumptech/glide) for image loading
+* [Retrofit2](https://square.github.io/retrofit/) for HTTP
+* [Moshi](https://github.com/square/moshi) for serialization
+* [Coroutines](https://developer.android.com/kotlin/coroutines) for Reactivity
+* [Navigation](https://developer.android.com/guide/navigation) for navigation between fragments
+
+# ⚙ Build
 
 * [Create](https://developer.android.com/studio/run/managing-avds#createavd) an ADV Device
 * [Boot up]((https://developer.android.com/studio/run/managing-avds#emulator)) your ADV Device
@@ -74,7 +91,7 @@ Open your device and search for your installed 'Pokedex egSYS' apk
 
 Aplicativo de Pokédex, contendo os dados de todos os pokémons, o app realiza requisições dos dados para  PokéAPI e os salva localmente para que o usuário possa ter acesso offline aos dados.
 
-# Features
+# Funcionalidades
 * Todas as entradas oficiais da pokédex
 * Busca por nome
 * Detalhes dos pokémon
@@ -107,7 +124,15 @@ A camada de dados é responsável tanto realizar chamadas à API quanto fazer a 
 **/ui** &rarr; Contém classes de Activities, Fragments, Adapters e ViewModels (Funciona como controller)  
 **/util** &rarr; Contém classes utilitárias e [kotlin extensions](https://kotlinlang.org/docs/extensions.html) para reaproveitamento de código
 
-# Compilação
+# 📗 Bibliotecas
+* [Koin](https://insert-koin.io/) para injeção de dependência
+* [Glide](https://github.com/bumptech/glide) para imagens
+* [Retrofit2](https://square.github.io/retrofit/) para HTTP
+* [Moshi](https://github.com/square/moshi) para Serialização
+* [Coroutines](https://developer.android.com/kotlin/coroutines?hl=pt-br) para Reatividade
+* [Navigation](https://developer.android.com/guide/navigation) para navegação entre fragments
+
+# ⚙ Compilação
 
 * [Crie](https://developer.android.com/studio/run/managing-avds#createavd) um dispositivo virtual
 * [Inicie]((https://developer.android.com/studio/run/managing-avds#emulator)) seu dispositivo virtual
