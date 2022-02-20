@@ -13,7 +13,7 @@
 
 # 📄 Docs
 
-* [Documentation (en)](#documentation)
+* [Documentation](#documentation)
   * [Features](#features)
   * [Flow](#flow)
   * [Architecture](#architecture)
