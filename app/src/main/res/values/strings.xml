@@ -32,6 +32,7 @@
     <string name="label_m">%1$s m</string>
 
     <string name="label_loading_data_status">Getting pokemon data (%1$d/%2$d)</string>
+    <string name="label_waiting_data">Loading entries…</string>
     <string name="label_loading_data">Getting pokemon data (%1$d/%2$d)</string>
     <string name="label_fetching_entries">Fetching pokédex entries…</string>
     <string name="error_fetching_entries">Couldn\'t get pokedex entries, verify your internet connection</string>

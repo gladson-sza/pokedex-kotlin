@@ -3,6 +3,7 @@ package br.com.egsys.pokedexegsys.ui.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.com.egsys.pokedexegsys.R
 import br.com.egsys.pokedexegsys.databinding.ActivitySplashBinding
@@ -59,15 +60,21 @@ class SplashActivity : AppCompatActivity() {
                     resources.getString(R.string.error_getting_data)
                 )
                 is SplashViewModel.DatabaseInsertionState.Success -> {
-                    if (state.entryNumber == viewModel.totalEntries) {
-                        viewModel.commitEntries()
-                        viewModel.verifyIfHasOfflineEntries()
-                    } else {
-                        binding.tvMessage.text = resources.getString(
-                            R.string.label_loading_data_status,
-                            state.entryNumber,
-                            viewModel.totalEntries
-                        )
+                    when {
+                        state.entryNumber > viewModel.totalEntries -> {
+                            viewModel.commitEntries()
+                            viewModel.verifyIfHasOfflineEntries()
+                        }
+                        state.entryNumber == viewModel.totalEntries -> {
+                            binding.tvMessage.text = resources.getString(R.string.label_waiting_data)
+                        }
+                        else -> {
+                            binding.tvMessage.text = resources.getString(
+                                R.string.label_loading_data_status,
+                                state.entryNumber,
+                                viewModel.totalEntries
+                            )
+                        }
                     }
                 }
             }

@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
         binding.svSearchPokemon.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.root.hideSoftKeyboard()
+                query?.let { viewModel.search(it) }
                 return true
             }
 
@@ -69,12 +70,6 @@ class HomeFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }
-
-        binding.svSearchPokemon.setOnCloseListener {
-            Toast.makeText(requireContext(), "Close", Toast.LENGTH_SHORT).show()
-            binding.root.hideSoftKeyboard()
-            return@setOnCloseListener true
         }
 
         viewModel.pokemonData.observe(viewLifecycleOwner) { state ->

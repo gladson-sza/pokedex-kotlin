@@ -12,6 +12,10 @@ import br.com.egsys.pokedexegsys.data.model.storage.Pokemon
 import br.com.egsys.pokedexegsys.data.model.storage.Stats
 import br.com.egsys.pokedexegsys.exceptions.DatabaseException
 import br.com.egsys.pokedexegsys.exceptions.NetworkException
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -31,64 +35,76 @@ class PokedexRepositoryImpl(
         }
     }
 
+    private suspend fun getData(entryNumber: Int): Pair<Pokemon, List<Ability>> {
+
+        val pkmDex = service.fetchPokemonById(entryNumber)
+        val pkmSpecie = service.fetchPokemonSpecieById(entryNumber)
+        val abilities = mutableListOf<Ability>()
+        val statsMap = HashMap<String, Int>()
+
+        pkmDex.abilities.forEach { pkmAbility ->
+            abilities.add(
+                Ability(
+                    name = pkmAbility.ability.name,
+                    pokemonId = entryNumber
+                )
+            )
+        }
+
+        pkmDex.stats.forEach { pkmStat ->
+            statsMap[pkmStat.stat.name] = pkmStat.base_stat
+        }
+
+        val baseStats = Stats(
+            hp = statsMap[StatName.HP.value],
+            attack = statsMap[StatName.ATTACK.value],
+            defense = statsMap[StatName.DEFENSE.value],
+            spAttack = statsMap[StatName.SPECIAL_ATTACK.value],
+            spDefense = statsMap[StatName.SPECIAL_DEFENSE.value],
+            speed = statsMap[StatName.SPEED.value],
+        )
+
+        val type1: String = pkmDex.types.first().type.name
+        var type2: String? = null
+
+        if (pkmDex.types.size > 1) {
+            type2 = pkmDex.types[1].type.name
+        }
+
+        return Pair(
+            Pokemon(
+                entryNumber,
+                pkmDex.name,
+                pkmDex.weight,
+                pkmDex.height,
+                pkmSpecie.flavor_text_entries.first().flavor_text,
+                type1,
+                type2,
+                baseStats
+            ), abilities
+        )
+    }
+
     override fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Int> = flow {
         try {
-            val pkmList = mutableListOf<Pokemon>()
-            val abilityList = mutableListOf<Ability>()
+            val pkmList = mutableListOf<Deferred<Pair<Pokemon, List<Ability>>>>()
             var count = 0
 
-            pokemon.forEach {
-                val pkmDex = service.fetchPokemonById(it.entry_number)
-                val pkmSpecie = service.fetchPokemonSpecieById(it.entry_number)
-                val statsMap = HashMap<String, Int>()
-
-                pkmDex.abilities.forEach { pkmAbility ->
-                    abilityList.add(
-                        Ability(
-                            name = pkmAbility.ability.name,
-                            pokemonId = it.entry_number
-                        )
-                    )
+            coroutineScope {
+                pokemon.forEach { pokemonEntry ->
+                    val pkm = async {
+                        getData(pokemonEntry.entry_number)
+                    }
+                    pkmList.add(pkm)
+                    emit(++count)
                 }
-
-                pkmDex.stats.forEach { pkmStat ->
-                    statsMap[pkmStat.stat.name] = pkmStat.base_stat
-                }
-
-                val baseStats = Stats(
-                    hp = statsMap[StatName.HP.value],
-                    attack = statsMap[StatName.ATTACK.value],
-                    defense = statsMap[StatName.DEFENSE.value],
-                    spAttack = statsMap[StatName.SPECIAL_ATTACK.value],
-                    spDefense = statsMap[StatName.SPECIAL_DEFENSE.value],
-                    speed = statsMap[StatName.SPEED.value],
-                )
-
-                val type1: String = pkmDex.types.first().type.name
-                var type2: String? = null
-
-                if (pkmDex.types.size > 1) {
-                    type2 = pkmDex.types[1].type.name
-                }
-
-                pkmList.add(
-                    Pokemon(
-                        it.entry_number,
-                        pkmDex.name,
-                        pkmDex.weight,
-                        pkmDex.height,
-                        pkmSpecie.flavor_text_entries.first().flavor_text,
-                        type1,
-                        type2,
-                        baseStats
-                    )
-                )
-
-                emit(++count)
             }
 
-            pokemonDao.insertAll(*pkmList.toTypedArray())
-            abilityDao.insertAll(*abilityList.toTypedArray())
+            val (pkms, abilities) = pkmList.awaitAll().toList().unzip()
+            emit(pkmList.awaitAll().size + 1)
+
+            pokemonDao.insertAll(*pkms.toTypedArray())
+            abilities.forEach { abilityDao.insertAll(*it.toTypedArray()) }
 
 
         } catch (ex: HttpException) {
