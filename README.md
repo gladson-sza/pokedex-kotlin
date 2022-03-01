@@ -77,7 +77,6 @@ The data layer is responsible for both making API calls and persisting in the lo
 
 **/di** &rarr; Contains [Koin](https://insert-koin.io/) dependency injection modules  
 **/data** &rarr; Contains Models, Services, DAOs, Services and others data related classes  
-**/ui** &rarr; Contains Activities, Fragments, Adapters and ViewModels classes (Works as a controller)  
 **/exceptions** &rarr; Contains custom exception classes  
 **/ui** &rarr; Contains Activities, Fragments, Adapters and ViewModels classes (Works as a controller)  
 **/util** &rarr; Contains utility classes and [kotlin extensions](https://kotlinlang.org/docs/extensions.html) for code reuse
