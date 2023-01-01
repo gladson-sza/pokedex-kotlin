@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pokedex egSYS</string>
+    <string name="app_name">Pokédex App</string>
     <string name="pokedex">Pokédex</string>
     <string name="error_icon">Error icon</string>
     <string name="label_touch">TOUCH</string>
