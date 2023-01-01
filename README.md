@@ -99,8 +99,8 @@ The data layer is responsible for both making API calls and persisting in the lo
 
 Build your app with gradle
 ```shell
-  git clone https://github.com/gladson-sza/pokedex-egsys.git
-  cd /pokedex-egsys
+  git clone https://github.com/gladson-sza/pokedex-kotlin.git
+  cd /pokedex-kotlin
   gradlew installDebug
 ```
 Open your device and search for your installed 'Pokedex egSYS' apk
