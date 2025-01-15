@@ -4,33 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_splash"
     tools:context=".ui.splash.SplashActivity">
 
-    <ImageView
-        android:id="@+id/iv_pokedex_top"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#C83737"
-        app:layout_constraintBottom_toTopOf="@+id/iv_pokedex_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pokedex_top"
-        android:contentDescription="@string/top_of_pokedex" />
-
-    <ImageView
-        android:id="@+id/iv_pokedex_bottom"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#c83737"
+    <View
+        android:id="@+id/circle_inner"
+        android:layout_width="230dp"
+        android:backgroundTint="@color/black"
+        android:layout_height="230dp"
+        android:background="@drawable/bg_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_pokedex_top"
-        app:srcCompat="@drawable/pokedex_botton"
-        android:contentDescription="@string/bottom_of_pokedex" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/circle_center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_touch"
@@ -81,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:visibility="invisible" />
+            android:visibility="gone" />
     </LinearLayout>
 
 

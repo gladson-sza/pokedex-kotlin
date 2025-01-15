@@ -1,9 +1,9 @@
-# 📱 Pokedex App ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg) [![License](https://img.shields.io/badge/license-Mit-blue.svg)](https://github.com/gladson-sza/pokedex-egsys/blob/master/LICENSE) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+# 📱 Pokedex App ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg) [![License](https://img.shields.io/badge/license-Mit-blue.svg)](https://github.com/gladson-sza/pokedex-kotlin/blob/master/LICENSE) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
 # Preview
-  Splash    |         Home      |       Details        |
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_splash.png)  |  ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_home.png) | ![](https://github.com/gladson-sza/pokedex-egsys/blob/master/documents/screen_shot_details.png)
+  Splash    |                                             Home                                              |       Details        |
+:-------------------------:|:---------------------------------------------------------------------------------------------:|:-------------------------:
+![](https://github.com/gladson-sza/pokedex-kotlin/blob/master/documents/screen_shot_splash.png)  | ![](https://github.com/gladson-sza/pokedex-kotlin/blob/master/documents/screen_shot_home.png) | ![](https://github.com/gladson-sza/pokedex-kotlin/blob/master/documents/screen_shot_details.png)
 
 # 📦 Resources
 

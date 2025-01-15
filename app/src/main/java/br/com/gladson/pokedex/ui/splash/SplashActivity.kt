@@ -101,15 +101,15 @@ class SplashActivity : AppCompatActivity() {
      * Smoothly opens half pokédex then start loading animation
      */
     private fun loadingDataAnimation(message: String) {
-        binding.ivPokedexBottom
-            .animate()
-            .translationY(200f)
-            .duration = 300
-
-        binding.ivPokedexTop
-            .animate()
-            .translationY(-200F)
-            .duration = 300
+//        binding.ivPokedexBottom
+//            .animate()
+//            .translationY(200f)
+//            .duration = 300
+//
+//        binding.ivPokedexTop
+//            .animate()
+//            .translationY(-200F)
+//            .duration = 300
 
         binding.tvMessage.text = message
 
@@ -136,30 +136,30 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-        binding.ivPokedexBottom
-            .animate()
-            .translationY(400f)
-            .duration = 500
-
-        binding.ivPokedexTop
-            .animate()
-            .translationY(-400F)
-            .duration = 500
+//        binding.ivPokedexBottom
+//            .animate()
+//            .translationY(400f)
+//            .duration = 500
+//
+//        binding.ivPokedexTop
+//            .animate()
+//            .translationY(-400F)
+//            .duration = 500
     }
 
     /**
      * Smoothly closes the pokédex
      */
     private fun resetPositionAnimation() {
-        binding.ivPokedexBottom
-            .animate()
-            .translationY(0f)
-            .duration = 500
-
-        binding.ivPokedexTop
-            .animate()
-            .translationY(0f)
-            .duration = 500
+//        binding.ivPokedexBottom
+//            .animate()
+//            .translationY(0f)
+//            .duration = 500
+//
+//        binding.ivPokedexTop
+//            .animate()
+//            .translationY(0f)
+//            .duration = 500
 
         binding.tvTouch.setIsVisible(true)
         binding.pbLoading.setIsVisible(false)
