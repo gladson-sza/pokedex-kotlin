@@ -26,10 +26,13 @@ class PokedexRepositoryImpl(
     private val abilityDao: AbilityDao,
     private val service: PokedexService,
 ) : PokedexRepository {
+    private val dexLimitSize = 151
+
     override fun fetchEntriesFromApi(): Flow<PokedexEntries> = flow {
         try {
             val dexEntries = service.fetchNationalDex()
-            emit(dexEntries)
+            val dexEntriesLimited = dexEntries.pokemon_entries.subList(0, dexLimitSize)
+            emit(PokedexEntries(dexEntriesLimited))
         } catch (ex: HttpException) {
             throw NetworkException(ex.message ?: "Cannot fetch pokemon entries")
         }
@@ -88,7 +91,7 @@ class PokedexRepositoryImpl(
      * Fetch a pokémon data by a given pokémon entry list, then exec all requests async emitting
      * the entry counter.
      *
-     * After wait all the results, the pokémon data is peristed locally then is emitted one last
+     * After wait all the results, the pokémon data is persisted locally then is emitted one last
      * counter that indicates that the data was persisted
      */
     override fun insertOnDatabase(pokemon: List<PokemonEntry>): Flow<Int> = flow {

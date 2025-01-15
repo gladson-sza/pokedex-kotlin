@@ -72,13 +72,13 @@ class SplashViewModel(
     }
 
     sealed class PokedexEntriesState {
-        object Loading : PokedexEntriesState()
+        data object Loading : PokedexEntriesState()
         data class Success(val pokedexEntries: PokedexEntries) : PokedexEntriesState()
         data class Error(val error: Throwable) : PokedexEntriesState()
     }
 
     sealed class DatabaseInsertionState {
-        object Loading : DatabaseInsertionState()
+        data object Loading : DatabaseInsertionState()
         data class Success(val entryNumber: Int) : DatabaseInsertionState()
         data class Error(val error: Throwable) : DatabaseInsertionState()
     }

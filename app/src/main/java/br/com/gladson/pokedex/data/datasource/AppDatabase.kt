@@ -16,7 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun abilityDao(): AbilityDao
 
     companion object {
-        private const val APP_DB_NAME = "pokedex_egsys.db"
+        private const val APP_DB_NAME = "pokedex.db"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null

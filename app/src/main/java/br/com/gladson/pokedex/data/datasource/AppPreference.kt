@@ -5,7 +5,7 @@ import android.content.Context
 class AppPreference(context: Context) {
 
     private companion object {
-        const val PREFERENCES_NAME = "pokedexegsys.sp"
+        const val PREFERENCES_NAME = "pokedex.sp"
         const val ENTRIES_QUANTITY = "entries_quantity"
     }
 
